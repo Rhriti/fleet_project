@@ -1,0 +1,6 @@
+station_name,station_code,latitude,longitude,city,operating_radius
+Tokyo Hub,DT001,35.6762,139.6503,Tokyo,2.0
+Paris Garage,DT002,48.8566,2.3522,Paris,3.0
+NYC Depot,DT003,40.7128,-74.0060,New York,4.0
+Sydney Lot,DT004,-33.8688,151.2093,Sydney,2.5
+Dubai Yard,DT005,25.2048,55.2708,Dubai,3.0

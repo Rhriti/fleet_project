@@ -1,0 +1,6 @@
+registration_number,vehicle_model,current_station,odometer_reading,fuel_level,latitude,longitude
+ABC123,Toyota Corolla,DT001,15000,75.5,35.7000,139.7500
+XYZ789,Honda Civic,DT002,12000,60.0,48.9000,2.4000
+LMN456,Ford Focus,DT003,18000,80.0,40.7581,-74.0060
+JKL321,Chevrolet Bolt,DT004,9000,55.0,-33.9000,151.3000
+QRS654,Nissan Leaf,DT005,20000,70.0,25.3048,55.5708
