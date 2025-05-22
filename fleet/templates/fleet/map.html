@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fleet Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { height: 600px; width: 100%; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([0, 0], 2); // Default center and zoom
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // console.log('Stations:', {{ stations|safe }});
+        // console.log('Vehicles:', {{ vehicles|safe }});
+        // Placeholder for dynamic data (to be replaced by Django view)
+        var stations = JSON.parse('{{ stations|escapejs }}')
+        var vehicles = JSON.parse('{{ vehicles|escapejs }}')
+
+        // Add stations with operating radius
+        stations.forEach(function(station) {
+            L.marker([station.latitude, station.longitude]).addTo(map)
+                .bindPopup(station.station_name + '<br>Radius: ' + station.operating_radius + ' km');
+            L.circle([station.latitude, station.longitude], {
+                radius: station.operating_radius * 1000, // Convert km to meters
+                color: 'blue',
+                fillOpacity: 0.1
+            }).addTo(map);
+        });
+
+        // Add vehicles
+        vehicles.forEach(function(vehicle) {
+            var marker = L.marker([vehicle.latitude, vehicle.longitude]).addTo(map)
+                .bindPopup(vehicle.registration_number + '<br>Safe: ' + !vehicle.is_unsafe);
+            if (vehicle.is_unsafe) {
+                marker.setIcon(L.icon({ iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png', iconSize: [25, 41] }));
+            }
+        });
+    </script>
+</body>
+</html>

@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'fleet'
+    'fleet',
+    'import_export'
 ]
 
 MIDDLEWARE = [
